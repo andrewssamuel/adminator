@@ -5,6 +5,9 @@ import './jquery-jvectormap-world-mill.js';
 import { debounce } from 'lodash';
 
 export default (function () {
+
+  var markers_01 = null;
+
   const vectorMapInit = () => {
     if ($('#world-map-marker').length > 0) {
       // This is a hack, as the .empty() did not do the work
@@ -23,8 +26,13 @@ export default (function () {
         >
         </div>
       `);
+       
+      console.log()
 
-      $('#vmap').vectorMap({
+      var arr = {};
+      
+
+       arr ={
         map: 'world_mill',
         backgroundColor: '#fff',
         borderColor: '#fff',
@@ -47,31 +55,21 @@ export default (function () {
             'stroke-opacity': 0.4,
           },
         },
-
-        markers : [{
-          latLng : [21.00, 78.00],
-          name : 'INDIA : 350',
-        }, {
-          latLng : [-33.00, 151.00],
-          name : 'Australia : 250',
-        }, {
-          latLng : [36.77, -119.41],
-          name : 'USA : 250',
-        }, {
-          latLng : [55.37, -3.41],
-          name : 'UK   : 250',
-        }, {
-          latLng : [25.20, 55.27],
-          name : 'UAE : 250',
-        }],
+        
+        //markers : markers_01,
         series: {
           regions: [{
             values: {
               'US': 298,
-              'SA': 200,
               'AU': 760,
               'IN': 200,
               'GB': 120,
+              'CN': 440,
+              'CA': 550,
+              'DE': 440,
+              'SE': 660,
+              'JP':800,
+              'BR':100,
             },
             scale: ['#03a9f3', '#02a7f1'],
             normalizeFunction: 'polynomial',
@@ -85,10 +83,38 @@ export default (function () {
         selectedRegions: [],
         enableZoom: false,
         hoverColor: '#fff',
-      });
+      }
+
+      arr["markers"]=markers_01;
+      
+      console.log(arr)
+      
+      $('#vmap').vectorMap(arr);
     }
   };
 
-  vectorMapInit();
+  
+  $.getJSON('http://localhost:7000/salesbycountries', function(results) {
+   
+    markers_01 = results.map(function(e) {
+      var marker_02 = "";
+      var latlan = [];
+      latlan.push(e.latitude)
+      latlan.push(e.longitude)
+      marker_02 = {"latLng":latlan,"name":e.country_name+' : '+e.sales_items +' millions'}
+
+      return marker_02;
+    })
+    
+
+  }).done(function(){
+     
+    vectorMapInit()
+
+  });
+
+  
+
+  
   $(window).resize(debounce(vectorMapInit, 150));
 })();
