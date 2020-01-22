@@ -52,6 +52,8 @@
           opacity: 0;
         }
       }
+
+   
     </style>
   </head>
   <body class="app">
@@ -179,7 +181,7 @@
                             <span id="sparklinedash"></span>
                           </div>
                           <div class="peer">
-                            <span class="d-ib lh-0 va-m fw-600 bdrs-10em pX-15 pY-15 bgc-green-50 c-green-500">11 Millons</span>
+                            <span class="d-ib lh-0 va-m fw-600 bdrs-10em pX-15 pY-15 bgc-green-50 c-green-500">1B</span>
                           </div>
                         </div>
                       </div>
@@ -190,7 +192,7 @@
                   <div class='col-md-3'>
                     <div class="layers bd bgc-white p-20">
                       <div class="layer w-100 mB-10">
-                        <h6 class="lh-1">2020 Predicted Sales</h6>
+                        <h6 class="lh-1">2020 Forecasted Sales</h6>
                       </div>
                       <div class="layer w-100">
                         <div class="peers ai-sb fxw-nw">
@@ -209,7 +211,7 @@
                   <div class='col-md-3'>
                     <div class="layers bd bgc-white p-20">
                       <div class="layer w-100 mB-10">
-                        <h6 class="lh-1">2020 Predicted Sales by Amazon</h6>
+                        <h6 class="lh-1">2020 Forecasted Sales by Amazon</h6>
                       </div>
                       <div class="layer w-100">
                         <div class="peers ai-sb fxw-nw">
@@ -217,7 +219,7 @@
                             <span id="sparklinedash3"></span>
                           </div>
                           <div class="peer">
-                            <span class="d-ib lh-0 va-m fw-600 bdrs-10em pX-15 pY-15 bgc-purple-50 c-purple-500">~1.4M</span>
+                            <span class="d-ib lh-0 va-m fw-600 bdrs-10em pX-15 pY-15 bgc-purple-50 c-purple-500">~231M</span>
                           </div>
                         </div>
                       </div>
@@ -228,7 +230,7 @@
                   <div class='col-md-3'>
                     <div class="layers bd bgc-white p-20">
                       <div class="layer w-100 mB-10">
-                        <h6 class="lh-1">2020 Predicted US Market</h6>
+                        <h6 class="lh-1">2020 Forecasted US Market</h6>
                       </div>
                       <div class="layer w-100">
                         <div class="peers ai-sb fxw-nw">
@@ -236,7 +238,7 @@
                             <span id="sparklinedash4"></span>
                           </div>
                           <div class="peer">
-                            <span class="d-ib lh-0 va-m fw-600 bdrs-10em pX-15 pY-15 bgc-blue-50 c-blue-500">~1.1M</span>
+                            <span class="d-ib lh-0 va-m fw-600 bdrs-10em pX-15 pY-15 bgc-blue-50 c-blue-500">~187M</span>
                           </div>
                         </div>
                       </div>
@@ -251,7 +253,7 @@
                     <div class="peer peer-greed w-70p@lg+ w-100@lg- p-20">
                       <div class="layers">
                         <div class="layer w-100 mB-10">
-                          <h6 class="lh-1">Global Sales 2020 (Predicted)</h6>
+                          <h6 class="lh-1">Global Sales 2020 (Forecasted)</h6>
                         </div>
                         <div class="layer w-100">
                           <div id="world-map-marker"></div>
@@ -264,7 +266,7 @@
                           <!-- Progress Bars -->
                           <div class="layers">
                             <div class="layer w-100 mB-10">
-                              <h6 class="lh-1">Predicted Sales by Popular Stores</h6>
+                              <h6 class="lh-1">Forecasted Sales by Popular Stores</h6>
                             </div>
                             <div class="layer w-100">
                               
@@ -308,30 +310,53 @@
                
                   <div class="layers">
                     <div class="layer w-100 pX-20 pT-20">
-                      <h6 class="lh-1">Monthy Stats</h6>
+                      <h6 class="lh-1">Monthly Forecasted Sales by Store and Product (Qty)</h6>
+                      
                       <div class="dropdown open pull-right">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="col-md-3">Store: </span>
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" store="1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           Walmart
                         </button>
                         
                         <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                          <button class="dropdown-item" type="button">Walmart</button>
-                          <button class="dropdown-item" type="button">Amazon</button>
-                          <button class="dropdown-item" type="button">Ebay</button>
-                          <button class="dropdown-item" type="button">Etsy</button>
-                          <button class="dropdown-item" type="button">Target</button>
-                          <button class="dropdown-item" type="button">Costco</button>
-                          <button class="dropdown-item" type="button">Aliexpress</button>
-                          <button class="dropdown-item" type="button">Kohls</button>
-                          <button class="dropdown-item" type="button">Wish</button>
-                          <button class="dropdown-item" type="button">Sears</button>
+                          <button class="dropdown-item dropdown-item_1" id="1" type="button">Walmart</button>
+                          <button class="dropdown-item dropdown-item_1" id="2" type="button">Amazon</button>
+                          <button class="dropdown-item dropdown-item_1" id="3" type="button">Ebay</button>
+                          <button class="dropdown-item dropdown-item_1" id="4" type="button">Etsy</button>
+                          <button class="dropdown-item dropdown-item_1" id="5" type="button">Target</button>
+                          <button class="dropdown-item dropdown-item_1" id="6" type="button">Costco</button>
+                          <button class="dropdown-item dropdown-item_1" id="7" type="button">Aliexpress</button>
+                          <button class="dropdown-item dropdown-item_1" id="8" type="button">Kohls</button>
+                          <button class="dropdown-item dropdown-item_1" id="9" type="button">Wish</button>
+                          <button class="dropdown-item dropdown-item_1" id="10" type="button">Sears</button>
+                        </div>
+                      </div>
+                     
+                      <div class="dropdown open pull-right">
+                        <span class="col-md-3">Product: </span>
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu3" product="18" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Apple Laptop
+                        </button>
+                        
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenu3">
+                          <button class="dropdown-item dropdown-item_2" id="18" type="button">Apple Laptop</button>
+                          <button class="dropdown-item dropdown-item_2" id="27" type="button">Bed Sheets</button>
+                          <button class="dropdown-item dropdown-item_2" id="31" type="button">Beds</button>
+                          <button class="dropdown-item dropdown-item_2" id="6" type="button">Car & Bike Care</button>
+                          <button class="dropdown-item dropdown-item_2" id="4" type="button">Car Body Covers</button>
+                          <button class="dropdown-item dropdown-item_2" id="3" type="button">Car Mat</button>
+                          <button class="dropdown-item dropdown-item_2" id="7" type="button">Car Media Players</button>
+                          <button class="dropdown-item dropdown-item_2" id="1" type="button">Car Pillow & Neck Rest</button>
+                          <button class="dropdown-item dropdown-item_2" id="10" type="button">Car Speakers</button>
+                          <button class="dropdown-item dropdown-item_2" id="8" type="button">Casula Shoes</button>
                         </div>
                     </div>
                       
                     </div>
-                 
+              
                     <div class="layer w-100 p-20">
-                      <canvas id="line-chart" height="220"></canvas>
+                      <!--<canvas id="line-chart" height="220"></canvas>-->
+                      <canvas id="line-chart"></canvas>
                     </div>
                     
                   </div>
@@ -359,11 +384,11 @@
                         <table id="example" class="table w-100 d-block d-md-table">
                           <thead>
                             <tr>
-                              <th class=" bdwT-1">Product Name</th>
-                              <th class=" bdwT-1">Product Category</th>
-                              <th class=" bdwT-1">Sales (2019)</th>
-                              <th class=" bdwT-1">^Sales(2020)</th>
-                              <th class=" bdwT-1"> &#x394</th>
+                              <th class=" bdwT-0">Product Name</th>
+                              <!--<th class=" bdwT-0">Category</th>-->
+                              <th class=" bdwT-0">Sales(2019)</th>
+                              <th class=" bdwT-0">^Sales(2020)</th>
+                              <th class=" bdwT-0"> &#x394</th>
                             </tr>
                           </thead>
                           <tbody>

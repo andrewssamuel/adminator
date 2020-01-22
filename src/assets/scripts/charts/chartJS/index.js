@@ -22,54 +22,45 @@ export default (function () {
   var labels_bar = [], targeted_sales=[],actual_sales = [], labels_do=[],store_sales = [];   
   
 
-  var labels = [], sales_items=[], sales_items_17=[], year=[],store=1, config={},saleslinechart=""; 
+  var labels = [], sales_items=[], sales_items_17=[], year=[],store=1, product=18, config={},saleslinechart=""; 
 
-  $(".dropdown-item").on('click', function(e)
+  $(".dropdown-item_1").on('click', function(e)
    { 
+    
     var selText = $(this).text();
     $("#dropdownMenu2").text(selText);
-    switch (selText) { 
-      case 'Walmart': 
-        store = 1;
-        break;
-      case 'Amazon': 
-      store = 2;
-        break;
-      case 'Ebay': 
-      store = 3;
-        break;		
-      case 'Etsy': 
-      store = 4;
-        break;
-      case 'Target': 
-      store = 5;
-        break;
-      case 'Costco': 
-      store = 6;
-        break;  
-      case 'Aliexpress': 
-      store = 7;
-        break;
-      case 'Kohls': 
-      store = 8;
-        break;
-      case 'Wish': 
-      store = 9;
-        break;
-      case 'Sears': 
-      store = 10;
-        break; 
-      }
-
-      populateData(store);
+    var product = $("#dropdownMenu3").attr('product');
+    
+    var store = $(this).attr('id');
+    $("#dropdownMenu2").attr('store',store);
+   
+    
+    populateData(store,product);
      
     
   });
 
+  $(".dropdown-item_2").on('click', function(e)
+  { 
+   
+   var selText = $(this).text();
+   $("#dropdownMenu3").text(selText);
+   var store = $("#dropdownMenu2").attr('store');
+   
+   var product = $(this).attr('id');
+   $("#dropdownMenu3").attr('product',product);
 
-  function populateData(sr,lineChartBox){
-    console.log("getting called populate data");
-    $.getJSON('http://localhost:7000/salesbystore/'+sr, function(results) {
+   populateData(store,product);
+    
+   
+ });
+
+  
+
+
+  function populateData(sr,pr,lineChartBox){
+    console.log("getting called populate data",sr,pr);
+    $.getJSON('http://localhost:7000/salesbystore/'+sr+'/product/'+pr, function(results) {
 
       console.log(results)
   
@@ -178,6 +169,7 @@ var sales_items_17 = sales_items_17.filter(function (el) {
       },
 
       options: {
+        animation: true,
         legend: {
           display: true,
         },
@@ -196,11 +188,10 @@ function pupulateChart(config,lineChartBox){
    saleslinechart=new Chart(lineCtx, config);
 
     if(lineChartBox==='undefined'){
+      saleslinechart.distroy()
       saleslinechart.config = config
       saleslinechart.update()
     }else{
-      
-      
       saleslinechart.render()
     }
 
@@ -210,9 +201,9 @@ function pupulateChart(config,lineChartBox){
   }
 
   if (lineChartBox) {
-    lineChartBox.height = 100
+    //lineChartBox.height = 100
 
-    populateData(store,lineChartBox)
+    populateData(store,product,lineChartBox)
 
  }
     
@@ -387,12 +378,12 @@ function pupulateChart(config,lineChartBox){
    })
  
    targeted_sales = results.map(function(e) {
-     return e.targeted_sales / 1000000
+     return Math.round(e.targeted_sales / 1000000)
     
     })
 
     actual_sales = results.map(function(e) {
-      return e.actual_sales / 1000000
+      return Math.round(e.actual_sales / 1000000)
      
      })
  
@@ -402,7 +393,7 @@ function pupulateChart(config,lineChartBox){
   console.log(actual_sales)
 
   const barSaleBox = document.getElementById('bar-chart-horizontal');
-  barSaleBox.height = 350;
+  //barSaleBox.height = 350;
   const barSaleCtx = barSaleBox.getContext('2d');
    
   new Chart(barSaleCtx,{
@@ -411,12 +402,12 @@ function pupulateChart(config,lineChartBox){
       labels: labels_bar,
       datasets: [
         {
-          label: "Acutal Sales(2019) (millions)",
+          label: "Acutal Sales(2019) (Million)",
           backgroundColor: 'rgba(0, 0, 255, 0.5)',
           data: actual_sales
         },
         {
-          label: "Target Sales(2010) (millions)",
+          label: "Target Sales(2010) (Million)",
           backgroundColor: 'rgba(0, 0, 0, 0.2)',
           data: targeted_sales
         }
@@ -432,7 +423,12 @@ function pupulateChart(config,lineChartBox){
   });
 
   
-  
+  function commaSeparateNumber(val) {
+    while (/(\d+)(\d{3})/.test(val.toString())) {
+        val = val.toString().replace(/(\d+)(\d{3})/, '$1' + ',' + '$2');
+    }
+    return val;
+}
 
 
   $(document).ready(function () {
@@ -449,26 +445,35 @@ function pupulateChart(config,lineChartBox){
                     targets: 0,
                     className: 'text-nowrap spacer'
                   },
+                 // {
+                  //  targets: 1,
+                   // className: 'text-nowrap spacer'
+                  //},
                   {
                     targets: 1,
-                    className: 'text-nowrap spacer'
+                    "render": function (data, type, row) {
+                      return commaSeparateNumber(data);
+                 },
+                    className: 'text-nowrap  text-right'
                   },
                   {
                     targets: 2,
-                    className: 'text-nowrap spacer text-right'
+                    "render": function (data, type, row) {
+                      return commaSeparateNumber(data);
+                 },
+                    className: 'text-info text-nowrap text-right'
                   },
                   {
                     targets: 3,
-                    className: 'text-info text-nowrap spacer text-right'
-                  },
-                  {
-                    targets: 4,
-                    className: 'text-success text-nowrap spacer text-right'
+                    "render": function ( data, type, full, meta ) {
+                      return +data+'%';
+                      },
+                    className: 'text-success text-nowrap text-right'
                   },
                 ],
                 "columns": [
                 { "data": "product_name" },
-                { "data": "product_category_name" },
+               // { "data": "product_category_name" },
                 { "data": "sales_2019" },
                 { "data": "sales_2020" },
                 {"data": "difference"}
@@ -494,7 +499,7 @@ function pupulateChart(config,lineChartBox){
     })
 
 store_sales = results.map(function(e) {
-  return e.sales / 1000000
+  return Math.round(e.sales/1000000)
  
  })
 
@@ -511,7 +516,7 @@ store_sales = results.map(function(e) {
      labels: labels_do,
      datasets: [
        {
-         label: "Population (millions)",
+         label: "Population (Million)",
          backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
          data: store_sales
        }
@@ -523,7 +528,7 @@ store_sales = results.map(function(e) {
     },
      title: {
        display: false,
-       text: 'Predicted world population (millions) in 2050'
+       text: 'Predicted world population (Million) in 2050'
      }
    }
  });
