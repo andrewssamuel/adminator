@@ -7,6 +7,7 @@ import { debounce } from 'lodash';
 export default (function () {
 
   var markers_01 = null;
+  var sales_qts = null;
 
   const vectorMapInit = () => {
     if ($('#world-map-marker').length > 0) {
@@ -39,6 +40,7 @@ export default (function () {
         borderOpacity: 0.25,
         borderWidth: 0,
         color: '#e6e6e6',
+        
         regionStyle : {
           initial : {
             fill : '#e4ecef',
@@ -60,18 +62,18 @@ export default (function () {
         series: {
           regions: [{
             values: {
-              'US': 298,
-              'AU': 760,
-              'IN': 200,
-              'GB': 120,
-              'CN': 440,
-              'CA': 550,
-              'DE': 440,
-              'SE': 660,
-              'JP':800,
-              'BR':100,
+              'US': 187.94,
+              'AU': 175.03,
+              'IN': 190.76,
+              'GB': 175.04,
+              'CN': 176.41,
+              'CA': 179,
+              'DE': 182.94,
+              'SE': 173.92,
+              'JP':190.04,
+              'BR':172.05,
             },
-            scale: ['#03a9f3', '#02a7f1'],
+            scale: ['#7CFC00','#006400'],
             normalizeFunction: 'polynomial',
           }],
         },
@@ -101,12 +103,12 @@ export default (function () {
       var latlan = [];
       latlan.push(e.latitude)
       latlan.push(e.longitude)
-      marker_02 = {"latLng":latlan,"name":e.country_name+' : '+e.sales_items +' millions'}
+      marker_02 = {"latLng":latlan,"name":e.country_name+' : '+e.sales_items +' M'}
 
       return marker_02;
     })
-    
 
+   
   }).done(function(){
      
     vectorMapInit()

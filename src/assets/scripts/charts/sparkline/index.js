@@ -10,18 +10,18 @@ export default (function () {
 
   const drawSparklines = () => {
     if ($('#sparklinedash').length > 0) {
-      $('#sparklinedash').sparkline([0, 5, 6, 10, 9, 12, 4, 9], {
+      $('#sparklinedash').sparkline([99,100,133,151,164,171,189,166,150,143,149,112], {
         type: 'bar',
         height: '20',
         barWidth: '3',
         resize: true,
         barSpacing: '3',
         barColor: '#4caf50',
-      });
+        });
     }
 
     if ($('#sparklinedash2').length > 0) {
-      $('#sparklinedash2').sparkline([0, 5, 6, 10, 9, 12, 4, 9], {
+      $('#sparklinedash2').sparkline([105, 105, 138, 156, 171, 177, 195, 172,157,150,155,117], {
         type: 'bar',
         height: '20',
         barWidth: '3',
@@ -32,7 +32,7 @@ export default (function () {
     }
 
     if ($('#sparklinedash3').length > 0) {
-      $('#sparklinedash3').sparkline([0, 5, 6, 10, 9, 12, 4, 9], {
+      $('#sparklinedash3').sparkline([13,13,17,20,21,22,24,22,20,19,19,15], {
         type: 'bar',
         height: '20',
         barWidth: '3',
@@ -43,7 +43,7 @@ export default (function () {
     }
 
     if ($('#sparklinedash4').length > 0) {
-      $('#sparklinedash4').sparkline([0, 5, 6, 10, 9, 12, 4, 9], {
+      $('#sparklinedash4').sparkline([17,17,15,19,17,17,20,12,22,13,12,19], {
         type: 'bar',
         height: '20',
         barWidth: '3',

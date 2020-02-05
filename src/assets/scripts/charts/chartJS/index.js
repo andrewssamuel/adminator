@@ -16,13 +16,11 @@ export default (function () {
   // @Line Charts
   // ------------------------------------------------------
 
-  const lineChartBox = document.getElementById('line-chart');
-  const lineCtx = lineChartBox.getContext('2d');
-
+  
   var labels_bar = [], targeted_sales=[],actual_sales = [], labels_do=[],store_sales = [];   
   
 
-  var labels = [], sales_items=[], sales_items_17=[], year=[],store=1, product=18, config={},saleslinechart=""; 
+  var labels = [], sales_items=[], sales_items_17=[], sales_items_19x=[], year=[],store=1, product=18, config={},saleslinechart=""; 
 
   $(".dropdown-item_1").on('click', function(e)
    { 
@@ -58,7 +56,7 @@ export default (function () {
   
 
 
-  function populateData(sr,pr,lineChartBox){
+  function populateData(sr,pr){
     console.log("getting called populate data",sr,pr);
     $.getJSON('http://localhost:7000/salesbystore/'+sr+'/product/'+pr, function(results) {
 
@@ -115,7 +113,14 @@ export default (function () {
      })
 
      sales_items_17 = results.map(function(e) {
-      if(e.year == 2017){
+      if(e.year == 2019){
+        return e.sales_items
+       }
+       
+    })
+
+    sales_items_19x = results.map(function(e) {
+      if(e.year == 2024){
         return e.sales_items
        }
        
@@ -131,6 +136,14 @@ export default (function () {
 
      sales_items = jQuery.grep(sales_items, function(value) {
       return value != 'undefined';
+    });
+
+    sales_items_19x = jQuery.grep(sales_items_19x, function(value) {
+      return value != 'undefined';
+    });
+
+    var sales_items_19x = sales_items_19x.filter(function (el) {
+      return el != null;
     });
 
     var sales_items = sales_items.filter(function (el) {
@@ -152,60 +165,64 @@ var sales_items_17 = sales_items_17.filter(function (el) {
       data: {
         labels: unique,
         datasets: [{
-          label                : '2020',
+          label                : '2020 Predicted',
           backgroundColor      : 'rgba(237, 231, 246, 0.5)',
           borderColor          : COLORS['deep-purple-500'],
           pointBackgroundColor : COLORS['deep-purple-700'],
           borderWidth          : 2,
+          borderDash: [10,5],
           data                 : sales_items,
         }, {
-          label                : '2017',
+          label                : '2019',
           backgroundColor      : 'rgba(232, 245, 233, 0.5)',
           borderColor          : COLORS['blue-500'],
           pointBackgroundColor : COLORS['blue-700'],
           borderWidth          : 2,
           data                 : sales_items_17,
+        },
+        {
+          label                : '2019 Predicted',
+          backgroundColor      : 'rgba(232, 245, 233, 0.5)',
+          borderColor          : COLORS['red-500'],
+          pointBackgroundColor : COLORS['red-700'],
+          borderWidth          : 2,
+          borderDash: [10,5],
+          data                 : sales_items_19x,
         }],
       },
 
       options: {
-        animation: true,
+        animation: false,
         legend: {
           display: true,
         },
       },
 
     }
-    pupulateChart(config,lineChartBox)
+    pupulateChart(config)
     });
   
     
   }
 
 
-function pupulateChart(config,lineChartBox){
+function pupulateChart(config){
 
-   saleslinechart=new Chart(lineCtx, config);
-
-    if(lineChartBox==='undefined'){
-      saleslinechart.distroy()
-      saleslinechart.config = config
-      saleslinechart.update()
-    }else{
-      saleslinechart.render()
-    }
-
-  
-    
+  const lineChartBox = document.getElementById('line-chart');
+ 
+   if(lineChartBox){
+    //lineChartBox.height = 120
+    const lineCtx = lineChartBox.getContext('2d');
+    saleslinechart=new Chart(lineCtx, config);
+    saleslinechart.render()
+   }
     
   }
+    //
 
-  if (lineChartBox) {
-    //lineChartBox.height = 100
+    populateData(store,product)
 
-    populateData(store,product,lineChartBox)
-
- }
+ 
     
 
    
@@ -393,7 +410,8 @@ function pupulateChart(config,lineChartBox){
   console.log(actual_sales)
 
   const barSaleBox = document.getElementById('bar-chart-horizontal');
-  //barSaleBox.height = 350;
+  //barSaleBox.height = 320;
+  if(barSaleBox){
   const barSaleCtx = barSaleBox.getContext('2d');
    
   new Chart(barSaleCtx,{
@@ -402,12 +420,12 @@ function pupulateChart(config,lineChartBox){
       labels: labels_bar,
       datasets: [
         {
-          label: "Acutal Sales(2019) (Million)",
+          label: "2019 Acutal Sales($M)",
           backgroundColor: 'rgba(0, 0, 255, 0.5)',
           data: actual_sales
         },
         {
-          label: "Target Sales(2010) (Million)",
+          label: "2020 Target Sales($M)",
           backgroundColor: 'rgba(0, 0, 0, 0.2)',
           data: targeted_sales
         }
@@ -421,6 +439,7 @@ function pupulateChart(config,lineChartBox){
       }
     }
   });
+}
 
   
   function commaSeparateNumber(val) {
@@ -440,6 +459,8 @@ function pupulateChart(config,lineChartBox){
         success: function (data) {
             $('#example').dataTable({
                 data: data,
+                responsive: true,
+                //pageLength: 15,
                 columnDefs: [
                   {
                     targets: 0,
@@ -495,7 +516,6 @@ function pupulateChart(config,lineChartBox){
  $.getJSON('http://localhost:7000/salesbystore', function(results) {
   labels_do = results.map(function(e) {
     return e.store_name
-   
     })
 
 store_sales = results.map(function(e) {
@@ -506,6 +526,7 @@ store_sales = results.map(function(e) {
  }).done(function(){
 
   const donutSaleBox = document.getElementById("doughnut-chart");
+  if(donutSaleBox){
   donutSaleBox.height = 700;
   const donutSaleCtx = donutSaleBox.getContext('2d');
  
@@ -516,7 +537,7 @@ store_sales = results.map(function(e) {
      labels: labels_do,
      datasets: [
        {
-         label: "Population (Million)",
+         label: "M",
          backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
          data: store_sales
        }
@@ -528,11 +549,11 @@ store_sales = results.map(function(e) {
     },
      title: {
        display: false,
-       text: 'Predicted world population (Million) in 2050'
+       text: ''
      }
    }
  });
-
+  }
 
  });
 

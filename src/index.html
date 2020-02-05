@@ -129,8 +129,24 @@
                 <span class="title">Dashboard</span>
               </a>
             </li>
-             </ul>
+            <li class="nav-item mT-30 actived">
+              <a class="sidebar-link" href="datatable.html">
+                <span class="icon-holder">
+                  <i class="c-orange-500 ti-layout-list-thumb"></i>
+                </span>
+                <span class="title">Stock Order</span>
+              </a>
             </li>
+            <li class="nav-item mT-30 actived">
+              <a class="sidebar-link" href="basic-table.html">
+                <span class="icon-holder">
+                  <i class="c-orange-500 ti-layout-list-thumb"></i>
+                </span>
+                <span class="title">Solution Architecture</span>
+              </a>
+            </li>
+            
+            
           </ul>
         </div>
       </div>
@@ -173,7 +189,7 @@
                   <div class='col-md-3'>
                     <div class="layers bd bgc-white p-20">
                       <div class="layer w-100 mB-10">
-                        <h6 class="lh-1">2019 Total Sales</h6>
+                        <h6 class="lh-1">2019 Actual Sales($)</h6>
                       </div>
                       <div class="layer w-100">
                         <div class="peers ai-sb fxw-nw">
@@ -181,7 +197,7 @@
                             <span id="sparklinedash"></span>
                           </div>
                           <div class="peer">
-                            <span class="d-ib lh-0 va-m fw-600 bdrs-10em pX-15 pY-15 bgc-green-50 c-green-500">1B</span>
+                            <span class="d-ib lh-0 va-m fw-600 bdrs-10em pX-15 pY-15 bgc-green-50 c-green-500">1.7B </span>
                           </div>
                         </div>
                       </div>
@@ -192,7 +208,7 @@
                   <div class='col-md-3'>
                     <div class="layers bd bgc-white p-20">
                       <div class="layer w-100 mB-10">
-                        <h6 class="lh-1">2020 Forecasted Sales</h6>
+                        <h6 class="lh-1">2020 Forecasted Sales($)</h6>
                       </div>
                       <div class="layer w-100">
                         <div class="peers ai-sb fxw-nw">
@@ -200,7 +216,7 @@
                             <span id="sparklinedash2"></span>
                           </div>
                           <div class="peer">
-                            <span class="d-ib lh-0 va-m fw-600 bdrs-10em pX-15 pY-15 bgc-green-50 c-green-500">+10%</span>
+                            <span class="d-ib lh-0 va-m fw-600 bdrs-10em pX-15 pY-15 bgc-green-50 c-green-500">+4%</span>
                           </div>
                         </div>
                       </div>
@@ -211,7 +227,7 @@
                   <div class='col-md-3'>
                     <div class="layers bd bgc-white p-20">
                       <div class="layer w-100 mB-10">
-                        <h6 class="lh-1">2020 Forecasted Sales by Amazon</h6>
+                        <h6 class="lh-1">2020 Projected Inventory </h6>
                       </div>
                       <div class="layer w-100">
                         <div class="peers ai-sb fxw-nw">
@@ -219,7 +235,7 @@
                             <span id="sparklinedash3"></span>
                           </div>
                           <div class="peer">
-                            <span class="d-ib lh-0 va-m fw-600 bdrs-10em pX-15 pY-15 bgc-purple-50 c-purple-500">~231M</span>
+                            <span class="d-ib lh-0 va-m fw-600 bdrs-10em pX-15 pY-15 bgc-purple-50 c-purple-500">+10%</span>
                           </div>
                         </div>
                       </div>
@@ -230,7 +246,7 @@
                   <div class='col-md-3'>
                     <div class="layers bd bgc-white p-20">
                       <div class="layer w-100 mB-10">
-                        <h6 class="lh-1">2020 Forecasted US Market</h6>
+                        <h6 class="lh-1">2020 Forecasted($) Sales by Ebay</h6>
                       </div>
                       <div class="layer w-100">
                         <div class="peers ai-sb fxw-nw">
@@ -238,7 +254,7 @@
                             <span id="sparklinedash4"></span>
                           </div>
                           <div class="peer">
-                            <span class="d-ib lh-0 va-m fw-600 bdrs-10em pX-15 pY-15 bgc-blue-50 c-blue-500">~187M</span>
+                            <span class="d-ib lh-0 va-m fw-600 bdrs-10em pX-15 pY-15 bgc-blue-50 c-blue-500">+5%</span>
                           </div>
                         </div>
                       </div>
@@ -253,7 +269,7 @@
                     <div class="peer peer-greed w-70p@lg+ w-100@lg- p-20">
                       <div class="layers">
                         <div class="layer w-100 mB-10">
-                          <h6 class="lh-1">Global Sales 2020 (Forecasted)</h6>
+                          <h6 class="lh-1">2020 Forecasted Global Sales($)</h6>
                         </div>
                         <div class="layer w-100">
                           <div id="world-map-marker"></div>
@@ -266,7 +282,7 @@
                           <!-- Progress Bars -->
                           <div class="layers">
                             <div class="layer w-100 mB-10">
-                              <h6 class="lh-1">Forecasted Sales by Popular Stores</h6>
+                              <h6 class="lh-1">Forecasted Sales by Popular Stores ($M)</h6>
                             </div>
                             <div class="layer w-100">
                               
@@ -386,8 +402,8 @@
                             <tr>
                               <th class=" bdwT-0">Product Name</th>
                               <!--<th class=" bdwT-0">Category</th>-->
-                              <th class=" bdwT-0">Sales(2019)</th>
-                              <th class=" bdwT-0">^Sales(2020)</th>
+                              <th class=" bdwT-0">2010 Sales($M)</th>
+                              <th class=" bdwT-0">2020 ^Sales($M)</th>
                               <th class=" bdwT-0"> &#x394</th>
                             </tr>
                           </thead>
@@ -470,7 +486,7 @@
 
         <!-- ### $App Screen Footer ### -->
         <footer class="bdT ta-c p-30 lh-0 fsz-sm c-grey-600">
-          <span>Copyright © 2020 UST Global. All rights reserved.</span>
+          <span>UI template from Colorlib.</span>
         </footer>
       </div>
     </div>
