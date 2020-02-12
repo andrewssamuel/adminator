@@ -182,6 +182,13 @@ $.ajax({
           className: 'text-success text-nowrap text-center'
         },
         {
+          targets: 4,
+          "render": function ( data, type, full, meta ) {
+            return commaSeparateNumber(data);
+            },
+          className: 'text-success text-nowrap text-center'
+        },
+        {
           targets: 5,
           className: 'text-center'
         },
@@ -191,6 +198,7 @@ $.ajax({
      // { "data": "product_category_name" },
       { "data": "store_name" },
       { "data": "product_name" },
+      { "data": "ord_quantity_2019" },
       { "data": "ord_quantity",
       render: function (data, type, row) {
         if (row.ord_quantity !== null) {

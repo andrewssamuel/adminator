@@ -73,7 +73,7 @@ export default (function () {
               'JP':190.04,
               'BR':172.05,
             },
-            scale: ['#7CFC00','#006400'],
+            scale: ['#ff0000','#7CFC00','#006400'],
             normalizeFunction: 'polynomial',
           }],
         },
