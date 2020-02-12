@@ -96,7 +96,7 @@ export default (function () {
   };
 
   
-  $.getJSON('http://localhost:7000/salesbycountries', function(results) {
+  $.getJSON('http://bayercrop.eastus2.cloudapp.azure.com:7000/salesbycountries', function(results) {
    
     markers_01 = results.map(function(e) {
       var marker_02 = "";

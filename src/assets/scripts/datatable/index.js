@@ -13,7 +13,7 @@ export default (function () {
 
   $(document).ready(function () {
     $.ajax({
-        url: 'http://localhost:7000/po',
+        url: 'http://bayercrop.eastus2.cloudapp.azure.com:7000/po',
         method: 'get',
         datatype: 'json',
         contentType: "application/json; charset=utf-8",
@@ -71,7 +71,7 @@ export default (function () {
       var invoice = this.firstElementChild.textContent;
       console.log(invoice)
       $.ajax({
-        url: 'http://localhost:7000/po/'+invoice,
+        url: 'http://bayercrop.eastus2.cloudapp.azure.com:7000/po/'+invoice,
         method: 'get',
         datatype: 'json',
         contentType: "application/json; charset=utf-8",
@@ -147,7 +147,7 @@ export default (function () {
  
 $(document).ready(function () { 
 $.ajax({
-  url: 'http://localhost:7000/pomon',
+  url: 'http://bayercrop.eastus2.cloudapp.azure.com:7000/pomon',
   method: 'get',
   datatype: 'json',
   contentType: "application/json; charset=utf-8",
@@ -275,7 +275,7 @@ $('#example12 tbody').on('change', 'input[type="checkbox"]', function(e){
     
   }
   $.ajax({
-    url: 'http://localhost:7000/pomon/'+inid+ '/product/'+pid+'/val/'+val,
+    url: 'http://bayercrop.eastus2.cloudapp.azure.com:7000/pomon/'+inid+ '/product/'+pid+'/val/'+val,
     type: 'PUT',
     success: function(result) {
       
@@ -291,7 +291,7 @@ $('#example12 tbody').on('click', 'td button', function (){
   var inid = this.getAttribute('in_no')
   var val = $("#"+inid+'-'+pid).val()
   $.ajax({
-    url: 'http://localhost:7000/poval/'+inid+ '/product/'+pid+'/val/'+val,
+    url: 'http://bayercrop.eastus2.cloudapp.azure.com:7000/poval/'+inid+ '/product/'+pid+'/val/'+val,
     type: 'PUT',
     success: function(result) {
       alert('Order Created, Please refresh the page!')

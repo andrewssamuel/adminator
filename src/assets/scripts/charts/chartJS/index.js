@@ -58,7 +58,7 @@ export default (function () {
 
   function populateData(sr,pr){
     console.log("getting called populate data",sr,pr);
-    $.getJSON('http://localhost:7000/salesbystore/'+sr+'/product/'+pr, function(results) {
+    $.getJSON('http://bayercrop.eastus2.cloudapp.azure.com:7000/salesbystore/'+sr+'/product/'+pr, function(results) {
 
       console.log(results)
   
@@ -385,7 +385,7 @@ function pupulateChart(config){
 
 
 
- $.getJSON('http://localhost:7000/salesbyproductcategories', function(results) {
+ $.getJSON('http://bayercrop.eastus2.cloudapp.azure.com:7000/salesbyproductcategories', function(results) {
 
    console.log(results)
 
@@ -452,7 +452,7 @@ function pupulateChart(config){
 
   $(document).ready(function () {
     $.ajax({
-        url: 'http://localhost:7000/salesreport',
+        url: 'http://bayercrop.eastus2.cloudapp.azure.com:7000/salesreport',
         method: 'get',
         datatype: 'json',
         contentType: "application/json; charset=utf-8",
@@ -513,7 +513,7 @@ function pupulateChart(config){
 
  });
 
- $.getJSON('http://localhost:7000/salesbystore', function(results) {
+ $.getJSON('http://bayercrop.eastus2.cloudapp.azure.com:7000/salesbystore', function(results) {
   labels_do = results.map(function(e) {
     return e.store_name
     })
